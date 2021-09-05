@@ -3,6 +3,8 @@ import { StatusBar} from 'expo-status-bar';
 import {SafeAreaView, Platform} from 'react-native'
 import {ThemeProvider} from 'styled-components/native'
 import Dashboard from './src/modules/Dashboard/screens/Home/Home.screen';
+import RegisterScreen from './src/modules/Register/screens/Register/Register.screen'
+import SelectCategories from './src/modules/Register/screens/CategoryModal'
 import theme from './src/global/theme'
 
 import {
@@ -29,7 +31,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <SafeAreaView style={{flex: 1, paddingTop: Platform.OS === 'android' ? 24 : 0}}>
         <StatusBar backgroundColor={theme.colors.primary} style="light" />
-        <Dashboard />
+        <RegisterScreen />
       </SafeAreaView>
     </ThemeProvider>
     </>
