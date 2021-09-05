@@ -6,6 +6,8 @@ import Dashboard from './src/modules/Dashboard/screens/Home/Home.screen';
 import RegisterScreen from './src/modules/Register/screens/Register/Register.screen'
 import SelectCategories from './src/modules/Register/screens/CategoryModal'
 import theme from './src/global/theme'
+import {NavigationContainer} from '@react-navigation/native'
+import { AppTabRoutes } from './src/routes/app.routes'
 
 import {
   useFonts,
@@ -31,7 +33,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <SafeAreaView style={{flex: 1, paddingTop: Platform.OS === 'android' ? 24 : 0}}>
         <StatusBar backgroundColor={theme.colors.primary} style="light" />
-        <RegisterScreen />
+          <NavigationContainer>
+              <AppTabRoutes />
+          </NavigationContainer>
       </SafeAreaView>
     </ThemeProvider>
     </>
