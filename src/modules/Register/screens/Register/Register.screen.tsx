@@ -102,7 +102,7 @@ const RegisterScreen = () => {
                     </TransactionButtons>
                     <Select title={selectedCategory.name || "Categorias"} onPress={openModal}/>
                 </Fields>
-                <Button title="Adiciona" onPress={handleSubmit(handleRegister)}/ >
+                <Button title="Enviar" onPress={handleSubmit(handleRegister)}/ >
             </Form>
             <Modal visible={showCategoryModal}>
                 <CategoryModal 

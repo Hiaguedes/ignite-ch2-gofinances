@@ -1,5 +1,6 @@
 import React from 'react';
-import { Header, UserInfo, Photo, User, UserGreeting, UserName, UserWrapper, PowerButton } from './styles'
+import { LogoutButton ,Header, UserInfo, Photo, User, UserGreeting, UserName, UserWrapper, PowerButton } from './styles'
+
 
 const HeaderComponent = () => {
     return (
@@ -12,7 +13,9 @@ const HeaderComponent = () => {
                         <UserName>Hiago</UserName>
                     </User>
                 </UserInfo>
-            <PowerButton />
+            <LogoutButton onPress={() => {}}>
+                <PowerButton /> 
+            </LogoutButton>
             </UserWrapper>
         </Header>
     );

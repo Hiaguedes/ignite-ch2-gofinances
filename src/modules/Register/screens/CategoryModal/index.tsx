@@ -21,7 +21,6 @@ const CategoryModal = ({category, setCategory, closeSelectCategory}: CategoryMod
             <Header>
                 <Title>Categoria</Title>
             </Header>
-            {/* <Title style={{color: 'black'}}>{category.name}</Title> */}
             <FlatList 
                 data={categories}
                 style={{flex:1, width: '100%'}}
@@ -38,7 +37,7 @@ const CategoryModal = ({category, setCategory, closeSelectCategory}: CategoryMod
                 ItemSeparatorComponent={() => <Separator />}
             />
             <Footer>
-                <Button onPress={closeSelectCategory} title="Selecionar"/>
+                <Button onPress={() => closeSelectCategory()} title="Selecionar"/>
             </Footer>
         </Container>
     );
