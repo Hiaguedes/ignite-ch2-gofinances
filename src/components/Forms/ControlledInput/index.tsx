@@ -7,9 +7,28 @@ interface ControlledInputProps extends FormInputProps {
     control: Control
     name: string;
     error: string;
+    mask?:"currency"
 }
 
-const ControlledInput = ({name, control, error, ...rest}: ControlledInputProps) => {
+const ControlledInput = ({name, control, mask, error, ...rest}: ControlledInputProps) => {
+
+    const masks = (value: string) => {
+
+        const CurrencyFormatter = () => {
+            const result = Number(value ? value : 0).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+            console.log('RESULTADO: ', result, 'value', value);
+
+            return result
+        }
+
+        switch(mask){
+            case "currency":
+                return CurrencyFormatter();
+        }
+    }
 
     return (
         <Container>

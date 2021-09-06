@@ -1,26 +1,27 @@
 import React from 'react';
 import {Container, Title, Amount, Footer, Category, Icon, CategoryName, Date} from './styles'
-
+import {DataListProps} from '../../screens/Home/Home.screen'
 export interface TransactionCardProps {
-    type: 'entry' | 'out';
-    title: string;
+    transactionType: 'entry' | 'out';
+    name: string;
     amount: string;
     date: string;
     category: {
         name: string;
+        key: string;
         icon: string;
     };
 }
 
-const TransactionCard = ({title, amount, type, date, category: {name, icon}}: TransactionCardProps) => {
+const TransactionCard = ({name, amount, transactionType, date, category, id}: DataListProps) => {
     return (
-        <Container>
-            <Title>{title}</Title>
-            <Amount type={type}>{`${type === 'out' ? '-': ''} ${amount}`}</Amount>
+        <Container key={id}>
+            <Title>{name}</Title>
+            <Amount transactionType={transactionType}>{`${transactionType === 'out' ? '-': ''} ${amount}`}</Amount>
             <Footer>
                 <Category>
-                    <Icon name={icon}/>
-                    <CategoryName>{name}</CategoryName>
+                    <Icon name={category.icon}/>
+                    <CategoryName>{category.name}</CategoryName>
                 </Category>
                 <Date>{date}</Date>
             </Footer>

@@ -14,7 +14,13 @@ import CategoryModal, {Category} from '../CategoryModal'
 import {useForm} from 'react-hook-form'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import uuid from 'react-native-uuid'
+import {useNavigation} from '@react-navigation/native'
 
+type NavigationProps = {
+    navigate:(screen:string) => void;
+ }
 interface FormData {
     name: string;
     amount: string;
@@ -32,23 +38,49 @@ const schema = Yup.object().shape({
 })
 
 const RegisterScreen = () => {
+    const collectionKey = '@gofinances:transactions';
+    const navigation = useNavigation<NavigationProps>();
     const [transactionType, setTransactionType] = React.useState('');
     const [showCategoryModal, setShowCategoryModal] = React.useState(false);
     const [selectedCategory, setSelectedCategory] = React.useState<Category>({
         key: '',
         name: '',
     })
+
+    
     const { 
-            control, 
-            handleSubmit, 
-            formState: { errors } 
-        } = useForm({
-            resolver: yupResolver(schema)
+        control, 
+        handleSubmit, 
+        formState: { errors },
+        reset
+    } = useForm({
+        resolver: yupResolver(schema)
     });
+    const ResetStates = () => {
+        setTransactionType('');
+        setSelectedCategory({
+            key: '',
+            name: '',
+        })
+        reset();
+        navigation.navigate('Listagem');
+    }
 
     React.useEffect(() => {
-        console.log('ERROS ', errors)
-    }, [errors])
+        const loadData = async () => {
+            const data = await AsyncStorage.getItem(collectionKey);
+            console.log(JSON.parse(data! ))
+        }
+
+        loadData();
+
+        // const removeAll = async() => {
+        //     await AsyncStorage.removeItem(collectionKey)
+        //     console.log(`${collectionKey} has been removed`)
+        // }
+
+        // removeAll()
+    }, [])
 
     const closeModal = () => setShowCategoryModal(false)
     const openModal = () => setShowCategoryModal(true)
@@ -57,20 +89,37 @@ const RegisterScreen = () => {
         setTransactionType(type)
     }
 
-    const handleRegister = ({name, amount}: FormData) => {
+    const handleRegister = async ({name, amount}: FormData) => {
 
         if(!transactionType) return Alert.alert('Selecione o tipo de transação, se é de entrada ou de saída');
         if(!selectedCategory.key) return Alert.alert('Selecione a categoria da transação');
 
-        const data = {
+        const newTransaction = {
+            id: String(uuid.v4()),
             name,
             amount,
             transactionType,
-            category: selectedCategory
+            category: selectedCategory,
+            date: new Date(),
         }
 
+        try {
+            const allTransactions = await AsyncStorage.getItem(collectionKey);
+            const currentData = allTransactions ? JSON.parse(allTransactions) : [];
 
-        console.log(data)
+            const dataFormatted = [
+                ...currentData,
+                newTransaction
+            ]
+            await AsyncStorage.setItem(collectionKey, JSON.stringify(dataFormatted));
+            ResetStates();
+
+        } catch (e) {
+            console.error('ERROR DE CADASTRO DE TRANSAÇÃO',e);
+            Alert.alert("Não foi possível salvar o cadastro")
+        } finally {
+
+        }
     }
 
     return (
@@ -93,6 +142,7 @@ const RegisterScreen = () => {
                         placeholder="Preço"
                         control={control}
                         name="amount"
+                        mask="currency"
                         keyboardType="numeric"
                         error={errors.amount ? errors.amount.message : ''}
                         />

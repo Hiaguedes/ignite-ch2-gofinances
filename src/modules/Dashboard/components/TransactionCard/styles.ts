@@ -3,9 +3,9 @@ import {Feather} from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize';
 import {TransactionCardProps} from './'
 
-type TransactionType = TransactionCardProps['type']
+type TransactionType = TransactionCardProps['transactionType']
 interface ItemTypeProps {
-    type: TransactionType;
+    transactionType: TransactionType;
 }
 
 const Container = styled.View`
@@ -24,8 +24,8 @@ const Title = styled.Text`
 const Amount = styled.Text<ItemTypeProps>`
     font-size: ${RFValue(20)}px;
     font-family: ${({theme}) => theme.fonts.regular}
-    ${({type}) => {
-        switch(type){
+    ${({transactionType}) => {
+        switch(transactionType){
             case 'out':
                 return css`color: ${({theme}) => theme.colors.attention}`;
             case 'entry':

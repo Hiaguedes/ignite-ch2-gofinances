@@ -2,9 +2,8 @@ import React from 'react';
 import { StatusBar} from 'expo-status-bar';
 import {SafeAreaView, Platform} from 'react-native'
 import {ThemeProvider} from 'styled-components/native'
-import Dashboard from './src/modules/Dashboard/screens/Home/Home.screen';
-import RegisterScreen from './src/modules/Register/screens/Register/Register.screen'
-import SelectCategories from './src/modules/Register/screens/CategoryModal'
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR'
 import theme from './src/global/theme'
 import {NavigationContainer} from '@react-navigation/native'
 import { AppTabRoutes } from './src/routes/app.routes'
