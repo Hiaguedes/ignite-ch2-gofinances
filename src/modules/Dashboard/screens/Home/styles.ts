@@ -34,4 +34,10 @@ const TransactionListTitle = styled.Text`
     margin-bottom: 16px;
 `;
 
-export { Container, Title, ContainerHighlightCards, TransactionsList, TransactionListTitle }
+const LoadContainer = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+
+export { Container, Title, ContainerHighlightCards, TransactionsList, TransactionListTitle, LoadContainer }

@@ -32,9 +32,13 @@ const Header = styled.View`
     justify-content: space-between;
 `;
 
-const Title = styled.Text<TypeProps>`
+const Title = styled.Text.attrs({
+    numberOfLines: 1,
+    ellipsizeMode:'tail'
+})<TypeProps>`
     font-family: ${({theme}) => theme.fonts.regular};
     font-size: ${RFValue(14)}px;
+    flex: 1;
     color: ${({theme, type}) => type === 'total' ? theme.colors.shape :theme.colors.text_dark};
 ;`;
 
