@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components'
 
 import Dashboard from '../modules/Dashboard/screens/Home/Home.screen'
 import Register from '../modules/Register/screens/Register/Register.screen'
+import Resume from '../modules/Resume/screens/Resume.screen'
 
 import {MaterialIcons} from '@expo/vector-icons'
 import {Platform} from 'react-native'
@@ -60,7 +61,7 @@ export const AppTabRoutes = () => {
             />
         <Screen 
             name="Resumo" 
-            component={Register}
+            component={Resume}
             options={{
             
                 tabBarIcon: (({size}) => (

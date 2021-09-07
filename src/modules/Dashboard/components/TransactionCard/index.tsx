@@ -1,17 +1,9 @@
 import React from 'react';
 import {Container, Title, Amount, Footer, Category, Icon, CategoryName, Date} from './styles'
 import {DataListProps} from '../../screens/Home/Home.screen'
-export interface TransactionCardProps {
-    transactionType: 'entry' | 'out';
-    name: string;
-    amount: string;
-    date: string;
-    category: {
-        name: string;
-        key: string;
-        icon: string;
-    };
-}
+import {TransactionCardProps} from '../../../../global/types'
+
+export { TransactionCardProps };
 
 const TransactionCard = ({name, amount, transactionType, date, category, id}: DataListProps) => {
     return (
