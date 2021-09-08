@@ -16,20 +16,20 @@ export const AppTabRoutes = () => {
     return (
     <Navigator
     screenOptions={{
-        headerShown: false
-      }}
-        tabBarOptions={{
-            activeTintColor: theme.colors.secondary,
-            inactiveTintColor: theme.colors.text,            
-            labelStyle: {
-                fontSize: 12,
+            headerShown: false,
+            "tabBarActiveTintColor": "#ff872c",
+            "tabBarInactiveTintColor": "#969cb2",
+            "tabBarLabelStyle": {
+              "fontSize": 12
             },
-            labelPosition: 'beside-icon',
-            style: {
-                paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-                height: 88,
+            "tabBarLabelPosition": "beside-icon",
+            "tabBarStyle": [
+              {
+                "display": "flex"
               },
-        }}
+              null
+            ]
+          }}
     >
         <Screen 
             name="Listagem" 
