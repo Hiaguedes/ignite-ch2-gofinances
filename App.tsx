@@ -7,6 +7,7 @@ import 'intl/locale-data/jsonp/pt-BR'
 import theme from './src/global/theme'
 import {NavigationContainer} from '@react-navigation/native'
 import { AppTabRoutes } from './src/routes/app.routes'
+import Login from './src/modules/Login/screens'
 
 import {
   useFonts,
@@ -32,9 +33,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <SafeAreaView style={{flex: 1, paddingTop: Platform.OS === 'android' ? 24 : 0}}>
         <StatusBar backgroundColor={theme.colors.primary} style="light" />
-          <NavigationContainer>
+          {/* <NavigationContainer>
               <AppTabRoutes />
-          </NavigationContainer>
+          </NavigationContainer> */}
+          <Login />
       </SafeAreaView>
     </ThemeProvider>
     </>
