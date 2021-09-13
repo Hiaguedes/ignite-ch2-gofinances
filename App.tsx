@@ -8,6 +8,7 @@ import theme from './src/global/theme'
 import {NavigationContainer} from '@react-navigation/native'
 import { AppTabRoutes } from './src/routes/app.routes'
 import Login from './src/modules/Login/screens'
+import AuthProvider from './src/contexts/Auth'
 
 import {
   useFonts,
@@ -36,7 +37,9 @@ export default function App() {
           {/* <NavigationContainer>
               <AppTabRoutes />
           </NavigationContainer> */}
-          <Login />
+          <AuthProvider>
+            <Login />
+          </AuthProvider>
       </SafeAreaView>
     </ThemeProvider>
     </>

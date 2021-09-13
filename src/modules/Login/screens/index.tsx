@@ -5,9 +5,22 @@ import GoogleSvg from '../../../assets/google.svg'
 import GoFinanceSvg from '../../../assets/logo.svg'
 import { RFValue } from 'react-native-responsive-fontsize';
 import SocialLoginButton from '../components/SocialLoginButton'
+import {useAuth} from '../../../contexts/Auth'
+import { Alert } from 'react-native';
 
 
 const Login = () => {
+    const {signInGoogle} = useAuth();
+
+    const handleSignInGoogle = async () => {
+        try {
+            await signInGoogle();
+        } catch (e) {
+            console.error(e);
+            Alert.alert('Não foi possível conectar na conta google')
+        }
+    }
+
     return (
         <Styles.Container>
             <Styles.LoginHeader>
@@ -23,7 +36,7 @@ const Login = () => {
             </Styles.LoginHeader>
             <Styles.Footer>
                 <Styles.ButtonContainer>
-                    <SocialLoginButton title="Entrar com Google" icon={GoogleSvg} />
+                    <SocialLoginButton title="Entrar com Google" icon={GoogleSvg} onPress={handleSignInGoogle} />
                     <SocialLoginButton title="Entrar com Apple" icon={AppleSvg} />
                 </Styles.ButtonContainer>
             </Styles.Footer>
