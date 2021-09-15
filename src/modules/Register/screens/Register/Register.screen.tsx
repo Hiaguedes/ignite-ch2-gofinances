@@ -150,11 +150,11 @@ const RegisterScreen = () => {
                         <TransactionTypeButton isActive={transactionType === 'entry'} onPress={() => handleTransactionTypeSelect('entry')} type="entry"/>
                         <TransactionTypeButton isActive={transactionType === 'out'} onPress={() => handleTransactionTypeSelect('out')} type="out"/>
                     </TransactionButtons>
-                    <Select title={selectedCategory.name || "Categorias"} onPress={openModal}/>
+                    <Select testID="select-button" title={selectedCategory.name || "Categorias"} onPress={openModal}/>
                 </Fields>
                 <Button title="Enviar" onPress={handleSubmit(handleRegister)}/ >
             </Form>
-            <Modal visible={showCategoryModal}>
+            <Modal testID="modal-category" visible={showCategoryModal}>
                 <CategoryModal 
                     setCategory={(category) => setSelectedCategory(category)} 
                     category={selectedCategory} 

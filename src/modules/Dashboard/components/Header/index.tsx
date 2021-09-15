@@ -1,19 +1,20 @@
 import React from 'react';
 import { LogoutButton ,Header, UserInfo, Photo, User, UserGreeting, UserName, UserWrapper, PowerButton } from './styles'
-
+import {useAuth} from '../../../../contexts/Auth'
 
 const HeaderComponent = () => {
+    const {user, LogOut} = useAuth();
     return (
         <Header>
             <UserWrapper>
                 <UserInfo>
-                    <Photo source={{uri: 'https://avatars.githubusercontent.com/u/23282043?v=4'}}/>
+                    <Photo source={{uri: user.image}}/>
                     <User>
                         <UserGreeting>Olá, </UserGreeting>
-                        <UserName>Hiago</UserName>
+                        <UserName>{user.name}</UserName>
                     </User>
                 </UserInfo>
-            <LogoutButton onPress={() => {}}>
+            <LogoutButton onPress={LogOut}>
                 <PowerButton /> 
             </LogoutButton>
             </UserWrapper>

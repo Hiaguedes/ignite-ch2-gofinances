@@ -1,12 +1,15 @@
 import React from 'react';
 import {TextInputProps} from 'react-native'
 import {TextInputBase} from './styles'
-export interface FormInputProps extends TextInputProps {}
 
-const Input = ({...rest}: FormInputProps) => {
+export interface FormInputProps extends TextInputProps {
+    active?: boolean;
+}
+
+const Input = ({active = false, ...rest}: FormInputProps) => {
     return (
         <>
-            <TextInputBase allowFontScaling={false} {...rest}/>
+            <TextInputBase active={active} allowFontScaling={false} {...rest}/>
         </>
     );
 }

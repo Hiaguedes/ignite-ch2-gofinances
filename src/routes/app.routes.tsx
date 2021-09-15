@@ -11,7 +11,7 @@ import {Platform} from 'react-native'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-export const AppTabRoutes = () => {
+const AppTabRoutes = () => {
     const theme = useTheme();
     return (
     <Navigator
@@ -76,3 +76,5 @@ export const AppTabRoutes = () => {
     </Navigator>
     )
 }
+
+export default AppTabRoutes;

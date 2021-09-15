@@ -6,7 +6,7 @@ import GoFinanceSvg from '../../../assets/logo.svg'
 import { RFValue } from 'react-native-responsive-fontsize';
 import SocialLoginButton from '../components/SocialLoginButton'
 import {useAuth} from '../../../contexts/Auth'
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 
 const Login = () => {
@@ -37,7 +37,7 @@ const Login = () => {
             <Styles.Footer>
                 <Styles.ButtonContainer>
                     <SocialLoginButton title="Entrar com Google" icon={GoogleSvg} onPress={handleSignInGoogle} />
-                    <SocialLoginButton title="Entrar com Apple" icon={AppleSvg} />
+                    {Platform.OS === 'ios' && <SocialLoginButton title="Entrar com Apple" icon={AppleSvg} />}
                 </Styles.ButtonContainer>
             </Styles.Footer>
         </Styles.Container>
